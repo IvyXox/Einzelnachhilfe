@@ -1,0 +1,228 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Libs -->
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Style -->
+  <link rel="stylesheet" href="css/main-style.css">
+
+  <title>Fabritz lernt!</title>
+</head>
+<body>
+
+  <section class="header container">
+
+  </section>
+
+  <div class="profiles container" style="background-color: white;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navcolor">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto text-center">
+          <li class="nav-item">
+            <a class="nav-link" href="take.php">Wer braucht Nachhilfe</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="give.php">Wer gibt Nachhilfe</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo htmlentities('../profile.php?id='.$_SESSION['id']); ?>">Mein Profil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../php/script_logout.php">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <section class="content">
+      <div class="container">
+        <form >
+          <div class="row">
+            <div class="col-md-3 text-center">
+              <p>Stufe
+                <select name="stufe" id="stufe">
+                  <option value="--">--</option>
+                  <option value="5">Stufe 5</option>
+                  <option value="6">Stufe 6</option>
+                  <option value="7">Stufe 7</option>
+                  <option value="8">Stufe 8</option>
+                  <option value="9">Stufe 9</option>
+                  <option value="10">Stufe 10</option>
+                  <option value="11">Stufe 11</option>
+                  <option value="12">Stufe 12</option>
+                </select>
+              </p>
+            </div>
+            <div class="col-md-3 text-center">
+              <p>Fach
+                <select name="fach" id="fach">
+                  <option value="--">--</option>
+                  <option value="mathe">Mathe</option>
+                  <option value="Deutsch">Deutsch</option>
+                  <option value="englisch">Englisch</option>
+                  <option value="latein">Latein</option>
+                  <option value="französisch">Französisch</option>
+                  <option value="physik">Physik</option>
+                  <option value="chemie">Chemie</option>
+                  <option value="biologie">Biologie</option>
+                  <option value="geschichte">Geschichte</option>
+                  <option value="sowi">SoWi</option>
+                  <option value="musik">Musik</option>
+                  <option value="kunst">Kunst</option>
+                  <option value="erdkunde">Erdkunde</option>
+                  <option value="philosophie">Philosophie</option>
+                  <option value="evreligion">Evangelische Religion</option>
+                  <option value="kreligion">Katholische Religion</option>
+                </select>
+              </p>
+            </div>
+            <div class="col-md-3 text-center">
+              <p>Lehrer
+                <select name="lehrer" id="lehrer">
+                  <option value="--">--</option>
+                  <option value="Fr.Dahl">Fr. Dahl</option>
+                  <option value="Fr.Schutt">Fr. Schutt</option>
+                  <option value="Fr.Dreher">Fr. Dreher</option>
+                  <option value="Fr.Süßbrich">Fr. Süßbrich</option>
+                  <option value="Hr.Mühle">Hr. Mühle</option>
+                  <option value="Hr.Busch">Hr. Busch</option>
+                  <option value="Hr.Horn">Hr. Horn</option>
+                  <option value="Hr.Huwer">Hr. Huwer</option>
+                </select>
+              </p>
+            </div>
+            <div class="col-md-3">
+              <input type="submit" class="btn btn-primary btn-search" name="submit" value="Search!" onclick="onClickChange()"/>
+            </div>
+          </div>
+        </form>
+        <script type="text/javascript">
+        function onClickChange(){
+          document.getElementById('stufe').value = "<?php echo htmlentities($_GET['stufe']);?>";
+          document.getElementById('fach').value = "<?php echo htmlentities($_GET['fach']);?>";
+          document.getElementById('lehrer').value = "<?php echo htmlentities($_GET['lehrer']);?>";
+        }
+        </script>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="row">
+        <?php
+        $teacher = "--";
+        $fach = "--";
+        $stufe = "--";
+        if(isset($_GET['lehrer']) && $_GET['lehrer'] != "--"){
+          $teacher = $_GET['lehrer'];
+        }
+        if(isset($_GET['fach']) && $_GET['fach'] != "--"){
+          $fach = $_GET['fach'];
+        }
+        if(isset($_GET['stufe']) && $_GET['stufe'] != "--"){
+          $stufe = $_GET['stufe'];
+        }
+        if((($fach == "latein" &&  $teacher == "Fr.Süßbrich") || ($fach == "englisch" &&  $teacher == "Hr.Mühle")) && $stufe == "10"){
+          ?>
+          <div class="col-md-4">
+            <div class="card cardbackground">
+              <img class="card-img-top" src="../assets/img/constantin.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Tom Benz</h5>
+                <p class="card-text">
+                  Name: Tom Benz
+                  <br>
+                  Fach: Latein(Fr. Süßbrich), Englisch(Hr. Mühle)
+                  <br>
+                  Stufe: 10
+                </p>
+                <a href="viewProfile.html?id=3" class="btn btn-primary">View More</a>
+              </div>
+            </div>
+          </div>
+
+          <?php
+        }
+        if((($fach == "deutsch" &&  $teacher == "Hr.Horn") || ($fach == "französisch" &&  $teacher == "Fr.Dreher")) && $stufe == "9"){
+          ?>
+          <div class="col-md-4">
+            <div class="card cardbackground">
+              <img class="card-img-top" src="../assets/img/tim.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Nick Schmidt</h5>
+                <p class="card-text">
+                  Name: Nick Schmidt
+                  <br>
+                  Fach: Deutsch(Hr. Horn), Französisch(Fr. Dreher)
+                  <br>
+                  Stufe: 9
+                </p>
+                <a href="viewProfile.html?id=3" class="btn btn-primary">View More</a>
+              </div>
+            </div>
+          </div>
+
+          <?php
+        }
+        if((($fach == "mathe" &&  $teacher == "Fr.Dahl") || ($fach == "physik" &&  $teacher == "Hr.Huwer")) && $stufe == "9"){
+          ?>
+          <div class="col-md-4">
+            <div class="card cardbackground">
+              <img class="card-img-top" src="../assets/img/tobi.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Thomas Tidelmann</h5>
+                <p class="card-text">
+                  Name: Thomas Tidelmann
+                  <br>
+                  Fach: Mathe(Fr.Dahl), Physik(Hr. Huwer)
+                  <br>
+                  Stufe: 9
+                  <br>
+                  <i class="fa fa-check-circle verified" aria-hidden="true"></i>
+                </p>
+                <a href="viewProfile.html?id=3" class="btn btn-primary">View More</a>
+              </div>
+            </div>
+          </div>
+
+          <?php
+        }
+        
+        if((($fach == "französisch" &&  $teacher == "Fr.Dreher") || ($fach == "deutsch" &&  $teacher == "Fr.Schutt")) && $stufe == "8"){
+          ?>
+          <div class="col-md-4">
+            <div class="card cardbackground">
+              <img class="card-img-top" src="../assets/img/lisa.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Julia Nadolski</h5>
+                <p class="card-text">
+                  Name: Julia Nadolski
+                  <br>
+                  Fach: Fanzösisch(Fr.Dreher), Deutsch(Fr.Schutt)
+                  <br>
+                  Stufe: 8
+                  <br>
+                  <i class="fa fa-check-circle verified" aria-hidden="true"></i>
+                </p>
+                <a href="viewProfile.html?id=3" class="btn btn-primary">View More</a>
+              </div>
+            </div>
+          </div>
+
+          <?php
+        }
+        ?>
+
+
+
+      </div>
+    </div>
+
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="../js/bootstrap.js"></script>
+</body>
+</html>
